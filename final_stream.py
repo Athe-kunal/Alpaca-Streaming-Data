@@ -27,7 +27,10 @@ async def trade_bars(bars):
     temp_df["close"] = [bars.close]
     temp_df["volume"] = [bars.volume]
     temp_df["tic"] = [bars.symbol]
-    temp_df["exchange"] = [bars.exchange]
+    if bars.symbol in ['ETHUSD','BTCUSD']:
+        temp_df["exchange"] = [bars.exchange]
+    else:
+        pass
     temp_df["vwap"] = [bars.vwap]
 
     temp_df.to_csv("bars.csv", mode="a", header=False)
